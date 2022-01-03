@@ -1,0 +1,112 @@
+* {
+    font-family: sans-serif;
+  }
+  .table-body{
+    margin: 90px 50px 50px 250px;
+  
+  
+  }
+  
+  .content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 15px;
+    border-radius: 5px 5px 0 0;
+  
+  }
+  
+  .content-table thead th {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+  
+  }
+  
+  .content-table th,
+  .content-table td {
+    padding: 5px 12px;
+  
+  }
+  .content-table td {
+    height: 70px;
+  
+  }
+  .content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  
+  .btn_edit {
+    color: white;
+    padding: 6px 18px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    background-color: #008CBA;
+    border-radius: 3px;
+  }
+  .btn_edit :hover{
+    background-color: red;
+    color: red;
+  }
+  
+  .btn_delete {
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    background-color: #ff3333;
+    border-radius: 3px;
+  }
+  .btn_delete :hover{
+    background-color: blue;
+  }
+  
+  .btn_add{
+    color: white;
+    padding: 6px 18px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    background-color: #00cc00;
+    border-radius: 3px;
+  }
+  .btn_add :hover{
+    background-color: #00ff00;
+    color: red;
+  }
+  
+  .report_date{
+    font-size: 40px;
+    border: 2px solid red;
+  
+  }
+  .search_bar{
+  /* border: 2px solid red; */
+    width: 1200px;
+    height: 30px;
+    font-size: 17px;
+  
+  }
+  
+  .search_bar:hover {
+  /* border: 2px solid red; */
+  border: 2px solid #3385ff;
+  
+  }
+  .search_contain{
+    text-decoration: none;
+  }
+  
