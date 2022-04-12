@@ -7,6 +7,11 @@ use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
+    // Dashboard
+    public function home(){
+        return view('pages.employee.home');
+    }
+
     public function createEmployee(){
         return view('pages.employee.create');
     }

@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Product;
-
+use App\Models\Order;
+use App\Models\Orderdetail;
 
 class ProductController extends Controller
 {
@@ -194,5 +195,99 @@ class ProductController extends Controller
 
     public function APIList(){
         return Product::all();
+    }
+
+
+    //Add to cart
+    public function addtocart(Request $req){
+        // session()->forget('cart');
+        // return $cart;
+        $id = $req->id;
+        $p = Product::where('id',$id)->first();
+        $cart= session()->get('cart');
+
+        if(!$cart){
+            $cart = [
+                $p->id =>[
+                    'id' =>$id,
+                    'name'=>$p->name,
+                    'qty'=>1,
+                    'price'=>$p->price,
+                    'image'=>$p->image
+                ]
+            ];
+            session()->put('cart',$cart);
+            return redirect()->route('home.product.list');
+        }        
+        if(isset($cart[$p->id])){
+            // return "ok";
+            $cart[$p->id]['qty']++;
+            session()->put('cart',$cart);
+            return redirect()->route('home.product.list');
+       
+        }
+        $cart [$p->id ] =
+        [
+                'id' =>$id,
+                'name'=>$p->name,
+                'qty'=>1,
+                'price'=>$p->price,
+                'image'=>$p->image
+
+            
+        ];
+        session()->put('cart',$cart);
+        return redirect()->route('home.product.list');
+
+    }
+
+    //All card items
+    public function mycart(){
+        $cart = session()->get('cart');
+        return view('pages.home.product.cart')
+        ->with('cart',$cart);
+    }
+
+    public function emptycart(){
+        session()->forget('cart');
+        // if(!session()->has('cart')){
+        //     return "Cart is empty";
+        // }
+        return redirect()->route('products.mycart');
+        
+    }
+
+    public function checkout(Request $req){
+        
+        //let when logged in there will be a field in session
+        $products = session()->get('cart');
+        // return $products;
+        //creating order
+        $customer_id = Session('Customer_id');
+        $order = new Order();
+        $order->customer_id = $customer_id;
+        $order->total_price = $req->total_price;
+        $order->payment_type = "Pending";
+        $order->status="Pending";
+        
+        $order->save();
+
+
+        
+        //creating order details
+        foreach($products as $p){
+            $o_d = new Orderdetail();
+            $o_d->p_name = $p['name'];
+            $o_d->order_id = $order->id;
+            $o_d->quantity = $p['qty'];
+            $o_d->unit_price = $p['price'];
+            $o_d->save();
+        }
+
+        session()->forget('cart');
+
+        return redirect()->route('customer.myorders');
+        
+
     }
 }

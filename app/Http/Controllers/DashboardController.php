@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $products = Product::all();
         $categories = Category::all();
 
-        return view('pages.home')
+        return view('pages.admin.home')
         ->with('admins',$admins)
         ->with('products',$products)
         ->with('employees',$employees);

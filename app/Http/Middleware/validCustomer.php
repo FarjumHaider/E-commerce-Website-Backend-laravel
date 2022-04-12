@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class ValidAdmin
+class validCustomer
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class ValidAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session('role')=="Admin" && $request->session()->get('user')){
+        if(session('role')=="Customer" && $request->session()->get('user')){
             return $next($request);
         }
         return redirect()->route('login');
